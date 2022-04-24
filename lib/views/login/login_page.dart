@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:project_19022022/shared/app_colors.dart';
 import 'package:project_19022022/views/home/home_page.dart';
 
@@ -84,35 +85,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         children: [
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'Email',
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              floatingLabelStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
                               hintText: 'example@gmail.com',
-                              hintStyle: TextStyle(
-                                color: AppColors.secondary.withOpacity(0.3),
-                                fontSize: 15,
-                              ),
-                              enabledBorder: UnderlineInputBorder(      
-                                borderSide: BorderSide(color: AppColors.secondary.withOpacity(0.5)),   
-                              ),  
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.secondary),
-                              ),
-                              border: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.secondary),
-                              ),
                             ),
                             keyboardType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.next,
@@ -122,35 +97,9 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           const SizedBox(height: 10),
                           TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: 'Password',
-                              labelStyle: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              floatingLabelStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
                               hintText: 'Type your password',
-                              hintStyle: TextStyle(
-                                color: AppColors.secondary.withOpacity(0.3),
-                                fontSize: 15,
-                              ),
-                              enabledBorder: UnderlineInputBorder(      
-                                borderSide: BorderSide(color: AppColors.secondary.withOpacity(0.5)),   
-                              ),  
-                              focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.secondary),
-                              ),
-                              border: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.secondary),
-                              ),
                             ),
                             keyboardType: TextInputType.text,
                             textInputAction: TextInputAction.done,

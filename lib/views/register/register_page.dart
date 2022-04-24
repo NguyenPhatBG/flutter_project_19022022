@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:project_19022022/shared/app_colors.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -25,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary,
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -65,39 +66,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Column(
                           children: [
                             TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: 'Email',
-                                labelStyle: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
-                                floatingLabelStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
                                 hintText: 'example@gmail.com',
-                                hintStyle: TextStyle(
-                                  color: AppColors.secondary.withOpacity(0.3),
-                                  fontSize: 15,
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color:
-                                          AppColors.secondary.withOpacity(0.5)),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.secondary),
-                                ),
-                                border: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.secondary),
-                                ),
                               ),
                               keyboardType: TextInputType.emailAddress,
                               textInputAction: TextInputAction.next,
@@ -107,39 +78,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 10),
                             TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: 'Password',
-                                labelStyle: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
-                                floatingLabelStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
                                 hintText: 'Type your password',
-                                hintStyle: TextStyle(
-                                  color: AppColors.secondary.withOpacity(0.3),
-                                  fontSize: 15,
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color:
-                                          AppColors.secondary.withOpacity(0.5)),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.secondary),
-                                ),
-                                border: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.secondary),
-                                ),
                               ),
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.next,
@@ -156,39 +97,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 10),
                             TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 labelText: 'Re-Password',
-                                labelStyle: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
-                                floatingLabelStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
                                 hintText: 'Type your password',
-                                hintStyle: TextStyle(
-                                  color: AppColors.secondary.withOpacity(0.3),
-                                  fontSize: 15,
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color:
-                                          AppColors.secondary.withOpacity(0.5)),
-                                ),
-                                focusedBorder: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.secondary),
-                                ),
-                                border: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.secondary),
-                                ),
                               ),
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.done,
