@@ -66,7 +66,7 @@ class ProfilePage extends ConsumerWidget {
                 fontSize: 18,
               ),
             ),
-            color: Colors.orange,
+            color: AppColors.primary,
           ),
         ),
       ]),

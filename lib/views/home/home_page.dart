@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:project_19022022/controllers/home_controller.dart';
+import 'package:project_19022022/shared/app_colors.dart';
 
 final homeNotifierProvider = ChangeNotifierProvider<HomeController>((ref) {
   return HomeController();
@@ -21,6 +22,7 @@ class HomePage extends ConsumerWidget {
         currentIndex: homeChangeNotifier.selectedIndex,
         onTap: homeChangeNotifier.onItemTapped,
         elevation: 5,
+        selectedItemColor: AppColors.primary,
         items: const [
           BottomNavigationBarItem(
             label: 'Home',
