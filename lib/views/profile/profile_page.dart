@@ -48,12 +48,96 @@ class ProfilePage extends ConsumerWidget {
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Colors.grey[600],
                     ),
+              ),
+              const SizedBox(height: 10),
+              ListView(
+                shrinkWrap: true,
+                children: [
+                  ListTile(
+                    leading: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                        color: Color(0xFFf7f6f9),
+                      ),
+                      child: const Icon(
+                        Icons.settings,
+                        color: Color(0xFF2a292f),
+                      ),
+                    ),
+                    title: Text(
+                      'Settings',
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.8),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 18),
+                    onTap: () {},
+                  ),
+                  const Divider(height: 1),
+                  ListTile(
+                    leading: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                        color: Color(0xFFf7f6f9),
+                      ),
+                      child: const Icon(
+                        Icons.credit_card,
+                        color: Color(0xFF2a292f),
+                      ),
+                    ),
+                    title: Text(
+                      'Billing Details',
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.8),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 18),
+                    onTap: () {},
+                  ),
+                  const Divider(height: 1),
+                  ListTile(
+                    leading: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                        color: Color(0xFFf7f6f9),
+                      ),
+                      child: const Icon(
+                        Icons.person,
+                        color: Color(0xFF2a292f),
+                      ),
+                    ),
+                    title: Text(
+                      'User Management',
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.8),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 18),
+                    onTap: () {},
+                  ),
+                  const Divider(height: 1),
+                ],
               )
             ],
           ),
         ),
         Positioned(
-          bottom: 30,
+          bottom: 10,
           left: AppConstants.kPadding,
           right: AppConstants.kPadding,
           child: MaterialButton(
