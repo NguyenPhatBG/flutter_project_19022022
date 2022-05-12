@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:project_19022022/controllers/home_controller.dart';
 import 'package:project_19022022/shared/app_colors.dart';
 import 'package:project_19022022/views/home/widgets/home_module.dart';
 import 'package:project_19022022/views/profile/profile_page.dart';
-
-final homeNotifierProvider = ChangeNotifierProvider<HomeController>((ref) {
-  return HomeController();
-});
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
