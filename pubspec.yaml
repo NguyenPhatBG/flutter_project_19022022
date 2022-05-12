@@ -19,6 +19,8 @@ dependencies:
   shared_preferences: ^2.0.13
   # model template
   json_annotation: ^4.5.0
+  # state manager
+  flutter_riverpod: ^2.0.0-dev.6
   # social login
   sign_in_with_apple: ^3.3.0
 
@@ -61,8 +63,3 @@ flutter:
         - asset: assets/fonts/Roboto-Regular.ttf
         - asset: assets/fonts/Roboto-Bold.ttf
         - asset: assets/fonts/Roboto-Black.ttf
-
-# CMD
-# Launcher icon generate: flutter pub run flutter_launcher_icons:main 
-# Splash generate: flutter pub run flutter_native_splash:create
-# Model generate: flutter pub run build_runner build
