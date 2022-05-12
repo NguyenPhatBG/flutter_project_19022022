@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:project_19022022/models/environment.dart';
 import 'package:project_19022022/shared/app_colors.dart';
@@ -8,6 +9,7 @@ import 'package:project_19022022/views/home/home_page.dart';
 import 'package:project_19022022/views/login/login_page.dart';
 import 'package:project_19022022/views/profile/profile_page.dart';
 import 'package:project_19022022/views/register/register_page.dart';
+import 'package:project_19022022/views/start/start_page.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: Environment.fileName);
@@ -17,7 +19,7 @@ Future<void> main() async {
     statusBarIconBrightness: Brightness.light,
     statusBarBrightness: Brightness.dark,
   ));
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -58,8 +60,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: '/login',
+      initialRoute: '/start',
       routes: {
+        '/start': (context) => const StartPage(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
         '/home': (context) => const HomePage(),

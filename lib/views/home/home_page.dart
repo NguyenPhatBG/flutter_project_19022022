@@ -1,37 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:project_19022022/views/home/widgets/home_module.dart';
-import 'package:project_19022022/views/profile/profile_page.dart';
+import 'package:project_19022022/controllers/home_controller.dart';
 
-class HomePage extends StatefulWidget {
+final homeNotifierProvider = ChangeNotifierProvider<HomeController>((ref) {
+  return HomeController();
+});
+
+class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
-  static const List<Widget> _widgetOptions = [
-    HomeModule(),
-    ProfilePage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeChangeNotifier = ref.watch(homeNotifierProvider);
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: HomeController.widgetOptions
+          .elementAt(homeChangeNotifier.selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: homeChangeNotifier.selectedIndex,
+        onTap: homeChangeNotifier.onItemTapped,
         elevation: 5,
         items: const [
           BottomNavigationBarItem(

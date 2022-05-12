@@ -1,20 +1,20 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:project_19022022/controllers/profile_controller.dart';
 import 'package:project_19022022/shared/app_colors.dart';
+import 'package:project_19022022/shared/app_constants.dart';
 
-class ProfilePage extends StatelessWidget {
+final profileNotifierProvider =
+    ChangeNotifierProvider<ProfileController>((ref) {
+  return ProfileController();
+});
+
+class ProfilePage extends ConsumerWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
-  static final random = Random();
-
-  static String randomPictureUrl() {
-    final randomInt = random.nextInt(1000);
-    return 'https://picsum.photos/seed/$randomInt/300/300';
-  }
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileChangeNotifier = ref.watch(profileNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
@@ -25,16 +25,15 @@ class ProfilePage extends StatelessWidget {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Align(
+      body: Stack(children: [
+        Align(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 10),
               CircleAvatar(
                 radius: 60,
-                backgroundImage: NetworkImage(randomPictureUrl()),
+                backgroundImage:
+                    NetworkImage(ProfileController.randomPictureUrl()),
               ),
               const SizedBox(height: 5),
               Text(
@@ -44,13 +43,33 @@ class ProfilePage extends StatelessWidget {
                     ),
               ),
               const SizedBox(height: 5),
-              Text('dev.phatnv@gmail.com', style: Theme.of(context).textTheme.titleSmall!.copyWith(
+              Text(
+                'dev.phatnv@gmail.com',
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Colors.grey[600],
-                    ),)
+                    ),
+              )
             ],
           ),
         ),
-      ),
+        Positioned(
+          bottom: 30,
+          left: AppConstants.kPadding,
+          right: AppConstants.kPadding,
+          child: MaterialButton(
+            onPressed: () => profileChangeNotifier.logout(context),
+            child: const Text(
+              'Logout',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+            color: Colors.orange,
+          ),
+        ),
+      ]),
     );
   }
 }

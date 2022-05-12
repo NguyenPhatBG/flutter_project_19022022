@@ -66,10 +66,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Column(
                           children: [
                             TextFormField(
+                              cursorColor: Colors.white,
                               decoration: const InputDecoration(
                                 labelText: 'Email',
                                 hintText: 'example@gmail.com',
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 12),
                               ),
+                              textAlignVertical: TextAlignVertical.center,
                               keyboardType: TextInputType.emailAddress,
                               textInputAction: TextInputAction.next,
                               onEditingComplete: () =>
@@ -78,10 +82,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 10),
                             TextFormField(
+                              cursorColor: Colors.white,
                               decoration: const InputDecoration(
                                 labelText: 'Password',
                                 hintText: 'Type your password',
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 12),
                               ),
+                              textAlignVertical: TextAlignVertical.center,
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.next,
                               onEditingComplete: () =>
@@ -97,10 +105,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             const SizedBox(height: 10),
                             TextFormField(
+                              cursorColor: Colors.white,
                               decoration: const InputDecoration(
                                 labelText: 'Re-Password',
                                 hintText: 'Type your password',
+                                contentPadding:
+                                    EdgeInsets.symmetric(vertical: 12),
                               ),
+                              textAlignVertical: TextAlignVertical.center,
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.done,
                               onEditingComplete: () =>

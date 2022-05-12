@@ -3,59 +3,20 @@ import 'dart:io';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:project_19022022/controllers/login_controller.dart';
 import 'package:project_19022022/shared/app_colors.dart';
-import 'package:project_19022022/views/home/home_page.dart';
 
-enum LoginType { email, facebook, apple, tiktok }
+final loginNotifierProvider = ChangeNotifierProvider<LoginController>((ref) {
+  return LoginController();
+});
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final _loginFormKey = GlobalKey<FormState>();
-
-  void _requestCloseKeyboard() {
-    FocusScope.of(context).requestFocus(FocusNode());
-  }
-
-  void _requestToRegister() {
-    Navigator.pushNamed(context, '/register');
-  }
-
-  void _requestLogin(LoginType key) {
-    if (key == LoginType.email) {
-      _loginFormKey.currentState!.save();
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => const HomePage(),
-        ),
-      );
-    } else if (key == LoginType.facebook) {
-    } else if (key == LoginType.apple) {
-      SignInWithAppleButton(
-        onPressed: () async {
-          final credential = await SignInWithApple.getAppleIDCredential(
-            scopes: [
-              AppleIDAuthorizationScopes.email,
-              AppleIDAuthorizationScopes.fullName,
-            ],
-          );
-          print(credential);
-          print(credential.authorizationCode);
-        },
-      );
-    } else if (key == LoginType.tiktok) {}
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginChangeNotifier = ref.watch(loginNotifierProvider);
     return Scaffold(
       backgroundColor: AppColors.primary,
       extendBodyBehindAppBar: true,
@@ -69,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
           Center(
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: _requestCloseKeyboard,
+              onTap: () => loginChangeNotifier.requestCloseKeyboard(context),
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -96,11 +57,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 40),
                       Form(
-                        key: _loginFormKey,
+                        key: loginChangeNotifier.loginFormKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         child: Column(
                           children: [
                             TextFormField(
+                              cursorColor: Colors.white,
                               decoration: const InputDecoration(
                                 labelText: 'Email',
                                 hintText: 'example@gmail.com',
@@ -110,12 +72,15 @@ class _LoginPageState extends State<LoginPage> {
                               textAlignVertical: TextAlignVertical.center,
                               keyboardType: TextInputType.emailAddress,
                               textInputAction: TextInputAction.next,
+                              controller: loginChangeNotifier.emailController,
+                              onSaved: (value) => loginChangeNotifier.email = value!,
                               onEditingComplete: () =>
                                   FocusScope.of(context).nextFocus(),
                               style: const TextStyle(color: Colors.white),
                             ),
                             const SizedBox(height: 10),
                             TextFormField(
+                              cursorColor: Colors.white,
                               decoration: const InputDecoration(
                                 labelText: 'Password',
                                 hintText: 'Type your password',
@@ -125,6 +90,8 @@ class _LoginPageState extends State<LoginPage> {
                               textAlignVertical: TextAlignVertical.center,
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.done,
+                              controller: loginChangeNotifier.passwordController,
+                              onSaved: (value) => loginChangeNotifier.password = value!,
                               onEditingComplete: () =>
                                   FocusScope.of(context).unfocus(),
                               style: const TextStyle(color: Colors.white),
@@ -138,7 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             const SizedBox(height: 30),
                             ElevatedButton(
-                              onPressed: () => _requestLogin(LoginType.email),
+                              onPressed: () => loginChangeNotifier
+                                  .requestLogin(LoginType.email, context),
                               style: ElevatedButton.styleFrom(
                                 minimumSize: Size.zero,
                                 padding: EdgeInsets.zero,
@@ -177,8 +145,8 @@ class _LoginPageState extends State<LoginPage> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
-                                  onPressed: () =>
-                                      _requestLogin(LoginType.facebook),
+                                  onPressed: () => loginChangeNotifier
+                                      .requestLogin(LoginType.facebook, context),
                                   icon: const Icon(
                                     Icons.facebook_rounded,
                                     color: Colors.white,
@@ -191,8 +159,8 @@ class _LoginPageState extends State<LoginPage> {
                                     children: [
                                       const SizedBox(width: 10),
                                       IconButton(
-                                        onPressed: () =>
-                                            _requestLogin(LoginType.apple),
+                                        onPressed: () => loginChangeNotifier
+                                            .requestLogin(LoginType.apple, context),
                                         icon: const Icon(
                                           Icons.apple_rounded,
                                           color: Colors.white,
@@ -204,8 +172,8 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 const SizedBox(width: 10),
                                 IconButton(
-                                  onPressed: () =>
-                                      _requestLogin(LoginType.tiktok),
+                                  onPressed: () => loginChangeNotifier
+                                      .requestLogin(LoginType.tiktok, context),
                                   icon: const Icon(
                                     Icons.tiktok_rounded,
                                     color: Colors.white,
@@ -229,7 +197,8 @@ class _LoginPageState extends State<LoginPage> {
                                       height: 1.5,
                                     ),
                                     recognizer: TapGestureRecognizer()
-                                      ..onTap = () => _requestToRegister(),
+                                      ..onTap = () => loginChangeNotifier
+                                          .requestToRegister(context),
                                   ),
                                 ],
                               ),
