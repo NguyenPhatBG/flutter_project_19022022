@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  # global variables
+  flutter_dotenv: ^5.0.2
   # network
   http: ^0.13.4
   # local storage
@@ -44,6 +46,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - .env
+    - .env.development
+    - .env.production
   fonts:
     - family: Roboto
       fonts:
