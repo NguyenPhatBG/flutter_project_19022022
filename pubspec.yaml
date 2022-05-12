@@ -27,15 +27,21 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^1.0.0
   flutter_native_splash: ^2.1.6
+  flutter_launcher_icons: ^0.9.2
   build_runner: ^2.1.10
   json_serializable: ^6.2.0
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/ic_logo.png"
+  remove_alpha_ios: true
 flutter_native_splash:
   android: true
   ios: true
   web: false
   color: "#42a5f5"
-  image: assets/images/ic_logo.png
+  image: assets/images/ic_splash.png
   android_gravity: center
   ios_content_mode: center
   web_image_mode: center
@@ -57,5 +63,6 @@ flutter:
         - asset: assets/fonts/Roboto-Black.ttf
 
 # CMD
+# Launcher icon generate: flutter pub run flutter_launcher_icons:main 
 # Splash generate: flutter pub run flutter_native_splash:create
 # Model generate: flutter pub run build_runner build
