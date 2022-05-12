@@ -13,7 +13,15 @@ class UserListResponse {
   final int total_pages;
   final List<UserDataResponse> data;
   final UserSupportResponse support;
-
+  
+  UserListResponse.withEmpty(
+    this.page,
+    this.per_page,
+    this.total,
+    this.total_pages,
+    this.data,
+    this.support,
+  );
   UserListResponse({
     required this.page,
     required this.per_page,

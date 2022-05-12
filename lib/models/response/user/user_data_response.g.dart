@@ -8,7 +8,7 @@ part of 'user_data_response.dart';
 
 UserDataResponse _$UserDataResponseFromJson(Map<String, dynamic> json) =>
     UserDataResponse(
-      id: json['id'] as String,
+      id: json['id'] as int,
       email: json['email'] as String,
       first_name: json['first_name'] as String,
       last_name: json['last_name'] as String,

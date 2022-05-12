@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_19022022/models/environment.dart';
 import 'package:project_19022022/shared/app_colors.dart';
 import 'package:project_19022022/views/home/home_page.dart';
+import 'package:project_19022022/views/home/user_detail.dart';
 import 'package:project_19022022/views/login/login_page.dart';
 import 'package:project_19022022/views/profile/profile_page.dart';
 import 'package:project_19022022/views/register/register_page.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegisterPage(),
         '/home': (context) => const HomePage(),
         '/profile': (context) => const ProfilePage(),
+        '/user_detail': (context) => const UserDetail(),
       },
     );
   }

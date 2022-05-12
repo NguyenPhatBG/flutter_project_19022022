@@ -5,7 +5,8 @@ part 'user_data_response.g.dart';
 @JsonSerializable()
 class UserDataResponse {
   /// The generated code assumes these values exist in JSON.
-  final String id, email, first_name, last_name, avatar;
+  final int id;
+  final String email, first_name, last_name, avatar;
 
   UserDataResponse({
     required this.id,

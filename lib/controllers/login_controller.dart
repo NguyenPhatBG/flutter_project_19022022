@@ -69,8 +69,8 @@ class LoginController extends ChangeNotifier {
         }
         notifyListeners();
       }
-    } catch (exeption) {
-      throw Exception(exeption.toString());
+    } catch (exception) {
+      throw Exception(exception.toString());
     }
   }
 
@@ -79,7 +79,17 @@ class LoginController extends ChangeNotifier {
     if (key == LoginType.email) {
       loginEmailRequest(context);
     } else if (key == LoginType.facebook) {
+      Future.delayed(const Duration(milliseconds: 1000), () async {
+        Utils.hideLoading(context);
+      });
     } else if (key == LoginType.apple) {
-    } else if (key == LoginType.tiktok) {}
+      Future.delayed(const Duration(milliseconds: 1000), () async {
+        Utils.hideLoading(context);
+      });
+    } else if (key == LoginType.tiktok) {
+      Future.delayed(const Duration(milliseconds: 1000), () async {
+        Utils.hideLoading(context);
+      });
+    }
   }
 }

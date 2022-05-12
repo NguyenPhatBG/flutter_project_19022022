@@ -3,24 +3,42 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:project_19022022/controllers/home_controller.dart';
 import 'package:project_19022022/shared/app_colors.dart';
+import 'package:project_19022022/views/home/widgets/home_module.dart';
+import 'package:project_19022022/views/profile/profile_page.dart';
 
 final homeNotifierProvider = ChangeNotifierProvider<HomeController>((ref) {
   return HomeController();
 });
 
-class HomePage extends ConsumerWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final homeChangeNotifier = ref.watch(homeNotifierProvider);
+  HomePageState createState() => HomePageState();
+}
+
+class HomePageState extends ConsumerState<HomePage> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = [
+    HomeModule(),
+    ProfilePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: HomeController.widgetOptions
-          .elementAt(homeChangeNotifier.selectedIndex),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        currentIndex: homeChangeNotifier.selectedIndex,
-        onTap: homeChangeNotifier.onItemTapped,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         elevation: 5,
         selectedItemColor: AppColors.primary,
         items: const [
