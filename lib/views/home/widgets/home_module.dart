@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:project_19022022/controllers/home_controller.dart';
+import 'package:project_19022022/controllers/stream/counter_stream.dart';
 import 'package:project_19022022/shared/app_colors.dart';
 import 'package:project_19022022/shared/app_constants.dart';
 
@@ -14,7 +15,9 @@ class HomeModule extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    CounterStream myStream = CounterStream();
     final homeChangeNotifier = ref.watch(homeNotifierProvider);
+    final userLength = homeChangeNotifier.users.data.length;
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       drawer: Drawer(
@@ -65,13 +68,24 @@ class HomeModule extends ConsumerWidget {
             icon: const Icon(Icons.menu),
           ),
         ),
-        title: const Text('List Of Users'),
+        title: StreamBuilder(
+          stream: myStream.counterStream,
+          builder: (context, snapshot) => Text(
+            snapshot.hasData
+                ? 'Stream Counter Data: ${snapshot.data.toString()}'
+                : "List Of Users ($userLength)",
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: Colors.white),
+          ),
+        ),
         backgroundColor: AppColors.primary,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: AppConstants.kPadding / 2),
         child: ListView.builder(
-          itemCount: homeChangeNotifier.users.data.length,
+          itemCount: userLength,
           itemBuilder: (BuildContext context, int index) {
             if (homeChangeNotifier.users.data.isEmpty) {
               return const CircularProgressIndicator();
@@ -106,6 +120,13 @@ class HomeModule extends ConsumerWidget {
             );
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          myStream.increase();
+        },
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
